@@ -48,7 +48,9 @@ public:
      * Optional, to set serial interface like Serial1 od SoftwareSerial.
      * Default is Serial.
      */
+#ifndef ESP_CH_SPI
     static void init(Stream *serial);
+#endif
 
     /*
      * Get the first socket available

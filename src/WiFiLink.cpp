@@ -42,10 +42,12 @@ void WiFiClass::init()
     WiFiDrv::wifiDriverInit();
 }
 
+#ifndef ESP_CH_SPI
 void WiFiClass::init(Stream *serial)
 {
   wfSerial.init(serial);
 }
+#endif
 
 uint8_t WiFiClass::getSocket()
 {

@@ -6,9 +6,11 @@ WiFi Link was developed for the Arduino Star Otto, Arduino Primo and [Uno WiFi D
 
 Use WiFi link library with [WiFi Link firmware](https://github.com/jandrassy/arduino-firmware-wifilink) in ESP8266.
 
-WiFi Link is the best general networking library for Arduino using esp8266 as WiFi network adapter. API of the WiFi Link library is almost the same as for the Ethernet, WiFi, WiFiEsp libraries. It is easy to port sketches and examples.
+WiFi Link is the best general networking library for Arduino using esp8266 connected with Serial as WiFi network adapter. API of the WiFi Link library is almost the same as for the Ethernet, WiFi, WiFiEsp libraries. It is easy to port sketches and examples.
 
 WiFi Link library implements the Arduino classes Server and Client which makes it compatible with libraries created upon Ethernet or WiFi library like [ArduinoHttpClient](https://github.com/arduino-libraries/ArduinoHttpClient.) library or [MQTT PubSubClient](https://github.com/knolleary/pubsubclient).
+
+WiFi Link can be compiled to [support SPI connection](https://github.com/jandrassy/arduino-firmware-wifilink#spi-connection) of esp8266 to MCU. It is used on Primo board.
 
 ## Install this library
 

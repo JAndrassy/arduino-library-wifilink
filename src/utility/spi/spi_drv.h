@@ -47,7 +47,7 @@
 #if defined (ARDUINO_NRF52_PRIMO)
 #define SLAVESELECT 31              // ss primo board            
 #define SLAVEREADY  30              // handshake pin primo board
-#elif defined (ARDUINO_AVR_UNO_WIFI)
+#elif defined (__AVR_ATmega328P__)
 #define SLAVESELECT 10              // ss uno wifi board                 
 #define SLAVEREADY  7               // handshake pin uno wifi board
 #endif
