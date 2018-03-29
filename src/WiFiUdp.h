@@ -29,6 +29,8 @@ private:
   uint8_t _sock;  // socket ID for Wiz5100
   uint16_t _port; // local port to listen on
 
+  int availUdpData = 0;
+
 public:
   WiFiUDP();  // Constructor
   virtual uint8_t begin(uint16_t);	// initialize, start listening on specified port. Returns 1 if successful, 0 if there are no sockets available to use

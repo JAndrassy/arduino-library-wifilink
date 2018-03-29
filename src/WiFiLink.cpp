@@ -53,7 +53,7 @@ uint8_t WiFiClass::getSocket()
 {
     for (uint8_t i = 0; i < MAX_SOCK_NUM; ++i)
     {
-        if (WiFiClass::_server_port[i] == 0)
+        if (WiFiClass::_server_port[i] == 0 && WiFiClass::_state[i] == NA_STATE)
         {
              return i;
         }

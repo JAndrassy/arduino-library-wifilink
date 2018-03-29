@@ -49,11 +49,10 @@ public:
   using Print::write;
 
 private:
-  static uint16_t _srcport;
-  uint8_t _sock;   //not used
-  uint16_t  _socket;
+  uint8_t _sock;
 
-  uint8_t getFirstSocket();
+  int availData;
+
 };
 
 #endif

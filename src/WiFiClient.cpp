@@ -29,17 +29,12 @@ extern "C" {
 #include "WiFiServer.h"
 #include "utility/server_drv.h"
 
-#define ATTEMPTS 350
-
-uint16_t WiFiClient::_srcport = 1024;
-int availData = 0;
-uint8_t client_status = 0;
-int attempts_conn = 0;
-
-WiFiClient::WiFiClient() : _sock(MAX_SOCK_NUM) {
+WiFiClient::WiFiClient() : _sock(255) {
+  availData = 0;
 }
 
 WiFiClient::WiFiClient(uint8_t sock) : _sock(sock) {
+  availData = 0;
 }
 
 int WiFiClient::connect(const char* host, uint16_t port) {
@@ -52,22 +47,16 @@ int WiFiClient::connect(const char* host, uint16_t port) {
 }
 
 int WiFiClient::connect(IPAddress ip, uint16_t port) {
-    _sock = getFirstSocket();
+    _sock = WiFiClass::getSocket();
     if (_sock != NO_SOCKET_AVAIL)
     {
     	ServerDrv::startClient(uint32_t(ip), port, _sock);
-    	WiFiClass::_state[_sock] = _sock;
-
-    	unsigned long start = millis();
-
-    	// wait 4 second for the connection to close
-    	while (!connected() && millis() - start < 10000)
-    		delay(1);
 
     	if (!connected())
        	{
     		return 0;
     	}
+      WiFiClass::_state[_sock] = _sock;
     }else{
     	Serial.println("No Socket available");
     	return 0;
@@ -190,8 +179,7 @@ void WiFiClient::stop() {
   ServerDrv::stopClient(_sock);
   WiFiClass::_state[_sock] = NA_STATE;
   availData = 0;
-  client_status =0;
-  int count = 0;
+//  int count = 0;
   // wait maximum 5 secs for the connection to close
   // while (status() != CLOSED && ++count < 50)
   //   delay(100);
@@ -204,23 +192,7 @@ uint8_t WiFiClient::connected() {
   if (_sock == 255) {
     return 0;
   } else {
-      uint8_t s;
-      attempts_conn++;
-      if(client_status == 0 || attempts_conn > ATTEMPTS){    //EDIT by Andrea
-        client_status = status();
-        s = client_status;
-        attempts_conn = 0;
-      }
-      else
-        s = client_status;
-
-        // client_status = status();
-        // s = client_status;
-
-      return !(s == LISTEN || s == CLOSED || s == FIN_WAIT_1 ||
-      		s == FIN_WAIT_2 || s == TIME_WAIT ||
-      		s == SYN_SENT || s== SYN_RCVD ||
-      		(s == CLOSE_WAIT));
+    return (status() == ESTABLISHED);
   }
 }
 
@@ -234,16 +206,4 @@ uint8_t WiFiClient::status() {
 
 WiFiClient::operator bool() {
   return _sock != 255;
-}
-
-// Private Methods
-uint8_t WiFiClient::getFirstSocket()
-{
-    for (int i = 0; i < MAX_SOCK_NUM; i++) {
-      if (WiFiClass::_state[i] == NA_STATE)
-      {
-          return i;
-      }
-    }
-    return SOCK_NOT_AVAIL;
 }

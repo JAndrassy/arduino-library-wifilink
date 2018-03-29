@@ -32,7 +32,6 @@ extern "C" {
 
 
 /* Constructor */
-int availUdpData = 0;
 WiFiUDP::WiFiUDP() : _sock(NO_SOCKET_AVAIL) {}
 
 /* Start WiFiUDP socket, listening at local port PORT */
@@ -43,6 +42,7 @@ uint8_t WiFiUDP::begin(uint16_t port) {
     {
         ServerDrv::startServer(port, sock, UDP_MODE);
         WiFiClass::_server_port[sock] = port;
+        WiFiClass::_state[_sock] = _sock;
         _sock = sock;
         _port = port;
         return 1;
@@ -132,6 +132,7 @@ int WiFiUDP::read()
   if (available())
   {
 	  ServerDrv::getData(_sock, &b);
+	  availUdpData--;
   	  return b;
   }else{
 	  return -1;
@@ -142,10 +143,10 @@ int WiFiUDP::read(unsigned char* buffer, size_t len)
 {
   if (available())
   {
-	  uint16_t size = 0;
+	  uint16_t size = len;
 	  if (!ServerDrv::getDataBuf(_sock, buffer, &size))
 		  return -1;
-	  // TODO check if the buffer is too smal respect to buffer size
+	  availUdpData -= size;
 	  return size;
   }else{
 	  return -1;
