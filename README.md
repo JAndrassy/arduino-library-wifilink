@@ -8,7 +8,7 @@ Use WiFi link library with [WiFi Link firmware](https://github.com/jandrassy/ard
 
 WiFi Link is the best general networking library for Arduino using esp8266 connected with Serial as WiFi network adapter. API of the WiFi Link library is almost the same as for the Ethernet, WiFi, WiFiEsp libraries. It is easy to port sketches and examples.
 
-WiFi Link library implements the Arduino classes Server and Client which makes it compatible with libraries created upon Ethernet or WiFi library like [ArduinoHttpClient](https://github.com/arduino-libraries/ArduinoHttpClient.) library or [MQTT PubSubClient](https://github.com/knolleary/pubsubclient).
+WiFi Link library implements the Arduino classes Server and Client which makes it compatible with libraries created upon Ethernet or WiFi library like [ArduinoHttpClient](https://github.com/arduino-libraries/ArduinoHttpClient.) library, [MQTT PubSubClient](https://github.com/knolleary/pubsubclient) or [Blynk](https://github.com/jandrassy/arduino-library-wifilink/tree/master/examples/WiFiLinkBlynk).
 
 WiFi Link can be compiled to [support SPI connection](https://github.com/jandrassy/arduino-firmware-wifilink#spi-connection) of esp8266 to MCU. It is used on Primo board.
 
