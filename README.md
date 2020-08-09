@@ -6,7 +6,7 @@ WiFi Link was developed for the Arduino Star Otto, Arduino Primo and [Uno WiFi D
 
 Use WiFi link library with [WiFi Link firmware](https://github.com/jandrassy/arduino-firmware-wifilink) in ESP8266.
 
-WiFi Link is the best general networking library for Arduino using esp8266 connected with Serial as WiFi network adapter. API of the WiFi Link library is almost the same as for the Ethernet, WiFi, WiFiEsp libraries. It is easy to port sketches and examples.
+WiFi Link is the a generic networking library for Arduino using esp8266 connected with Serial as WiFi network adapter. API of the WiFi Link library is almost the same as for the Ethernet, WiFi, WiFiEsp libraries. It is easy to port sketches and examples.
 
 WiFi Link library implements the Arduino classes Server and Client which makes it compatible with libraries created upon Ethernet or WiFi library like [ArduinoHttpClient](https://github.com/arduino-libraries/ArduinoHttpClient.) library, [MQTT PubSubClient](https://github.com/knolleary/pubsubclient) or [Blynk](https://github.com/jandrassy/arduino-library-wifilink/tree/master/examples/WiFiLinkBlynk).
 
@@ -16,13 +16,13 @@ WiFi Link can be compiled to [support SPI connection](https://github.com/jandras
 
 Older version of WiFi Link library is available in Library Manager. It is usable only for Primo, Otto and Uno WiFi. For use with generic esp8266 and Uno WiFi Dev Ed Serial1, you must download the library from this repository.
 
-Download the contents of this GitHub repository as ZIP using the green 'Clone or download' button. Extract the ZIP and copy the folder arduino-library-wifilink-master into your Arduino libraries folder (a subfolder in the folder where sketches are saved by IDE). Rename the folder to WiFi_Link. Reopen the IDE.
+Download the contents of this GitHub repository as ZIP using the green 'Code' button. Extract the ZIP and copy the folder arduino-library-wifilink-master into your Arduino libraries folder (a subfolder in the folder where sketches are saved by IDE). Rename the folder to WiFi_Link. Reopen the IDE.
 
 ## WiFi initialization
 
 WiFi Link can be used with ESP8266 connected over some serial interface or over SPI.
 
-To initialize WiFi Link library to comunicate with WiFi Link firmware over serial interface call WiFi.init() with some Stream implementation like SoftwareSerial, Serial1, Serial3. Without init() call the library uses Serial for communication or SPI if XY.build.extra_flags=-DESP_CH_SPI is  in boards.txt for Arduino board.
+To initialize WiFi Link library to communicate with WiFi Link firmware over serial interface call WiFi.init() with some Stream implementation like SoftwareSerial, Serial1, Serial3. Without init() call the library uses Serial for communication or SPI if XY.build.extra_flags=-DESP_CH_SPI is  in boards.txt for Arduino board.
 
 ## Reseting the ESP
 
