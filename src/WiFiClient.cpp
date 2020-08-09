@@ -192,6 +192,8 @@ uint8_t WiFiClient::connected() {
   if (_sock == 255) {
     return 0;
   } else {
+    if (available())
+      return true;
     return (status() == ESTABLISHED);
   }
 }
