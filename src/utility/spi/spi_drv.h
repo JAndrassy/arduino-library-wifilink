@@ -50,6 +50,9 @@
 #elif defined (__AVR_ATmega328P__)
 #define SLAVESELECT 10              // ss uno wifi board                 
 #define SLAVEREADY  7               // handshake pin uno wifi board
+#elif defined (ARDUINO_ARCH_SAMD)
+#define SLAVESELECT 5              // ss
+#define SLAVEREADY  4               // handshake pin
 #endif
 
 
